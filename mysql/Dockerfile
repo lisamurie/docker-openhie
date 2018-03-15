@@ -1,5 +1,5 @@
 #############################################################################
-# Dockerfile to build MongoDB Container images
+# Dockerfile to build MySQL Server  Container images
 # Based on Ubuntu
 ############################################################################
 
