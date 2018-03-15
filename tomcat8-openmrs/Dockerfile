@@ -1,5 +1,5 @@
 #############################################################################
-# Dockerfile to build MongoDB Container images
+# Dockerfile to build Tomcat 8 Server Container images
 # Based on Ubuntu
 ############################################################################
 
@@ -14,20 +14,13 @@ MAINTAINER Lisa Amai Murie #Label
 
 #################### BEGIN INSTALLATION #######################################
 
-
-#Set the working directory to /app
-#WORKDIR /openmrs
-#WORKDIR /app
-
-#Copy current directory contents into the container
-#ADD https://sourceforge.net/projects/openmrs/files/releases/OpenMRS_Platform_1.11.7/openmrs.war/download /openmrs
-
 #Set environment variables 
 ENV TOMCAT_VERSION_MAJOR 8
-ENV TOMCAT_VERSION_FULL 8.5.28	
+ENV TOMCAT_VERSION_FULL 8.5.29	
 ENV CATALINA_HOME /opt/tomcat
  
-COPY tomcat.conf /etc/init/tomcat.conf
+#Install Oracle Java 8
+
 RUN apt-get update && \
 apt-get install -y software-properties-common && \
 add-apt-repository ppa:webupd8team/java -y && \
@@ -38,6 +31,7 @@ apt-get update && \
 apt-get clean && \
 
 #Install Apache Tomcat 8 server
+
 groupadd tomcat && \
 useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat && \
 cd ~ && \
@@ -46,8 +40,9 @@ mkdir /opt/tomcat && \
 tar xvf apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz -C /opt/tomcat --strip-components=1 
 
 #Download openmrs war file
-COPY openmrs.war ${CATALINA_HOME}/webapps/
-#ADD https://sourceforge.net/projects/openmrs/files/releases/OpenMRS_Platform_1.11.7/openmrs.war/download ${CATALINA_HOME}/webapps/ 
+
+#COPY openmrs.war ${CATALINA_HOME}/webapps/
+ADD https://sourceforge.net/projects/openmrs/files/releases/OpenMRS_Platform_1.11.7/openmrs.war ${CATALINA_HOME}/webapps/ 
  
 #Change directory to CATALINA_HOME
 RUN cd ${CATALINA_HOME}/webapps/ && \

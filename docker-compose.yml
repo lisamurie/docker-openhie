@@ -1,0 +1,11 @@
+version: '3'
+services:
+   mysql:
+      build: mysql/.
+      ports:
+         - "3306:3306"
+   openmrs:
+      build: tomcat8-openmrs/.
+      ports:
+         - "8008:8080"
+  

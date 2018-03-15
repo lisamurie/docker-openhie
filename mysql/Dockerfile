@@ -20,7 +20,7 @@ ENV MYSQL_VERSION_FULL 5.6
 RUN apt-get update && \ 
 apt-get install mysql-server-${MYSQL_VERSION_FULL} -y  && \
 apt-get update && \
-apt-get clean && \
+apt-get clean
 
 VOLUME /var/lib/mysql
 
