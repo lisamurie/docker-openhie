@@ -1,6 +1,6 @@
 version: '3'
 services:
-   mysql-server-5.6:
+   mysql-5.6:
       build: mysql-docker/5.6/.
       environment: 
          MYSQL_ROOT_PASSWORD: openmrs 
@@ -9,26 +9,26 @@ services:
       volumes:
          - dbdata:/var/lib/mysql
          
-   openmrs:
+   openmrs_8:
       depends_on:
-         - mysql-server-5.6
+         - mysql-5.6
       volumes:
          - modules:/modules
       build: tomcat8-openmrs/.
       ports:
          - "8008:8080"
 
-   openshr:
-      depends_on:
-         - mysql-server-5.6
-      volumes:
-         - modules:/modules
+   #openshr:
+   #  depends_on:
+   #     - mysql-server-5.6
+   #  volumes:
+   #     - modules:/modules
            
-      build: tomcat8-openshr/.
-      ports:
+   #  build: tomcat8-openshr/.
+   #  ports:
          - "8089:8080"  
 
 volumes:
    dbdata:
    modules:
-   openshr-modules:
+           #openshr-modules:

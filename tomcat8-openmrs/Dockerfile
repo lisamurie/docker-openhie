@@ -16,7 +16,7 @@ MAINTAINER Lisa Amai Murie #Label
 
 #Set environment variables 
 ENV TOMCAT_VERSION_MAJOR 8
-ENV TOMCAT_VERSION_FULL 8.5.29	
+ENV TOMCAT_VERSION_FULL 8.5.31	
 ENV CATALINA_HOME /opt/tomcat
 ENV MODULES_DIR /root/.OpenMRS/modules
 
